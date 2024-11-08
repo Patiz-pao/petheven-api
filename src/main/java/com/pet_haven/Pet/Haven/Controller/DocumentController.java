@@ -11,9 +11,4 @@ public class DocumentController {
         return "Hello from Spring Boot API!";
     }
 
-    @GetMapping("/testapi")
-    public String test() {
-        return "Hello PetHaven";
-    }
-
 }
