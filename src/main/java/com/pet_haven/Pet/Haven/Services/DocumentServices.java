@@ -4,9 +4,7 @@ import com.pet_haven.Pet.Haven.Entity.ProductEntity;
 import com.pet_haven.Pet.Haven.Repository.ProductRepo;
 import com.pet_haven.Pet.Haven.Services.domain.productsReq;
 import com.pet_haven.Pet.Haven.Util.GenericResponse;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
@@ -17,13 +15,11 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Slf4j
-@Getter
-@Setter
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Service
 @Transactional
 public class DocumentServices {
-    private ProductRepo productRepo;
+    private final ProductRepo productRepo;
 
     public GenericResponse saveProduct(productsReq productsReq) {
         ProductEntity productEntity = new ProductEntity();
