@@ -6,10 +6,10 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.3.5</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
-	<groupId>com.pethaven</groupId>
-	<artifactId>PetHaven</artifactId>
+	<groupId>com.pet-haven</groupId>
+	<artifactId>Pet-Haven</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Pet-Haven</name>
 	<description>Demo project for Spring Boot</description>
