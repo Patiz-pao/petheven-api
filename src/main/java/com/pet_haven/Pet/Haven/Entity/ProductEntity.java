@@ -1,51 +1,63 @@
 package com.pet_haven.Pet.Haven.Entity;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
-import jakarta.persistence.Id;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
+
 @Entity
 @Table(name = "products")
 public class ProductEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "row_id")
+    private String rowid;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "description")
     private String description;
 
-    private Double price;
+    @Column(name = "price")
+    private BigDecimal price;
 
+    @Column(name = "category")
     private String category;
 
-    private Integer stockQuantity;
+    @Column(name = "stock_quantity")
+    private int stockQuantity;
 
+    @Column(name = "image_url")
     private String imageUrl;
 
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+    @Column(name = "status")
     private String status;
 
+    @Column(name = "sku")
     private String sku;
 
+    @Column(name = "brand")
     private String brand;
 
-    private Double rating;
+    @Column(name = "rating")
+    private BigDecimal rating;
 
-    private Double discountPrice;
+    @Column(name = "discount_price")
+    private BigDecimal discountPrice;
 
+    @Column(name = "is_featured")
     private Boolean isFeatured;
 }
