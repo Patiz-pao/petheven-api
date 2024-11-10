@@ -1,5 +1,6 @@
 package com.pet_haven.Pet.Haven.Services.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +9,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class productsReq {
 
     private String rowid;

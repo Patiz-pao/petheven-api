@@ -4,9 +4,7 @@ import com.pet_haven.Pet.Haven.Entity.ProductEntity;
 import com.pet_haven.Pet.Haven.Repository.ProductRepo;
 import com.pet_haven.Pet.Haven.Services.domain.productsReq;
 import com.pet_haven.Pet.Haven.Util.GenericResponse;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
@@ -14,18 +12,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
-@Getter
-@Setter
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Service
 @Transactional
 public class DocumentServices {
-    private ProductRepo productRepo;
+    private final ProductRepo productRepo;
 
-    public GenericResponse saveProduct(productsReq productsReq) {
+    public GenericResponse saveProducts(productsReq productsReq) {
         ProductEntity productEntity = new ProductEntity();
 
         productsReq.setRowid(UUID.randomUUID().toString());
@@ -36,8 +33,15 @@ public class DocumentServices {
 
         productRepo.save(productEntity);
 
-        GenericResponse response = new GenericResponse(HttpStatus.CREATED, "Product created successfully");
+        GenericResponse response = new GenericResponse(HttpStatus.CREATED, "Product created successfully", productEntity);
 
         return response;
     }
+
+    public GenericResponse getProducts() {
+        List<ProductEntity> products = productRepo.findAll();
+
+        return new GenericResponse(HttpStatus.OK, "Get Products successfully", products);
+    }
+
 }
