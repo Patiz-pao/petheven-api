@@ -1,5 +1,6 @@
 package com.pet_haven.Pet.Haven.Controller;
 
+import com.pet_haven.Pet.Haven.Entity.ProductEntity;
 import com.pet_haven.Pet.Haven.Repository.ProductRepo;
 import com.pet_haven.Pet.Haven.Services.DocumentServices;
 import com.pet_haven.Pet.Haven.Services.domain.productsReq;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -25,18 +28,18 @@ public class DocumentController {
     }
 
     @PostMapping("/products")
-    public GenericResponse saveProducts(@RequestBody productsReq productsReq) {
+    public GenericResponse<ProductEntity> saveProducts(@RequestBody productsReq productsReq) {
 
-        GenericResponse response = documentServices.saveProducts(productsReq);
+        GenericResponse<ProductEntity> response = documentServices.saveProducts(productsReq);
         log.info("save products success");
 
         return response;
     }
 
     @GetMapping("/products")
-    public GenericResponse getProducts() {
+    public GenericResponse<List<ProductEntity>> getProducts() {
 
-        GenericResponse response = documentServices.getProducts();
+        GenericResponse<List<ProductEntity>> response = documentServices.getProducts();
         log.info("get products success");
 
         return response;

@@ -22,7 +22,7 @@ import java.util.UUID;
 public class DocumentServices {
     private final ProductRepo productRepo;
 
-    public GenericResponse saveProducts(productsReq productsReq) {
+    public GenericResponse<ProductEntity> saveProducts(productsReq productsReq) {
         ProductEntity productEntity = new ProductEntity();
 
         productsReq.setRowid(UUID.randomUUID().toString());
@@ -33,15 +33,13 @@ public class DocumentServices {
 
         productRepo.save(productEntity);
 
-        GenericResponse response = new GenericResponse(HttpStatus.CREATED, "Product created successfully", productEntity);
-
-        return response;
+        return new GenericResponse<>(HttpStatus.CREATED, "Product created successfully", productEntity);
     }
 
-    public GenericResponse getProducts() {
+    public GenericResponse<List<ProductEntity>> getProducts() {
         List<ProductEntity> products = productRepo.findAll();
 
-        return new GenericResponse(HttpStatus.OK, "Get Products successfully", products);
+        return new GenericResponse<>(HttpStatus.OK, "Get Products successfully", products);
     }
 
 }
