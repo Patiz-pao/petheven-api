@@ -33,7 +33,7 @@ public class DocumentServices {
 
         productRepo.save(productEntity);
 
-        GenericResponse response = new GenericResponse(HttpStatus.CREATED, "Product created successfully");
+        GenericResponse response = new GenericResponse(HttpStatus.CREATED, "Product created successfully", productEntity);
 
         return response;
     }
