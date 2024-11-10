@@ -25,10 +25,19 @@ public class DocumentController {
     }
 
     @PostMapping("/products")
-    public GenericResponse saveProduct(@RequestBody productsReq productsReq) {
+    public GenericResponse saveProducts(@RequestBody productsReq productsReq) {
 
-        GenericResponse response = documentServices.saveProduct(productsReq);
+        GenericResponse response = documentServices.saveProducts(productsReq);
         log.info("save products success");
+
+        return response;
+    }
+
+    @GetMapping("/products")
+    public GenericResponse getProducts() {
+
+        GenericResponse response = documentServices.getProducts();
+        log.info("get products success");
 
         return response;
     }

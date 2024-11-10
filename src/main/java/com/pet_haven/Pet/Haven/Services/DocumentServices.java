@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -21,7 +22,7 @@ import java.util.UUID;
 public class DocumentServices {
     private final ProductRepo productRepo;
 
-    public GenericResponse saveProduct(productsReq productsReq) {
+    public GenericResponse saveProducts(productsReq productsReq) {
         ProductEntity productEntity = new ProductEntity();
 
         productsReq.setRowid(UUID.randomUUID().toString());
@@ -36,4 +37,11 @@ public class DocumentServices {
 
         return response;
     }
+
+    public GenericResponse getProducts() {
+        List<ProductEntity> products = productRepo.findAll();
+
+        return new GenericResponse(HttpStatus.OK, "Get Products successfully", products);
+    }
+
 }

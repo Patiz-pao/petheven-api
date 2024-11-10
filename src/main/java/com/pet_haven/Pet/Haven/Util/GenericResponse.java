@@ -10,13 +10,20 @@ import org.springframework.http.HttpStatus;
 @Builder
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class GenericResponse {
+public class GenericResponse<T> {
     private HttpStatus status;
     private String message;
+    private T data;
 
     public GenericResponse(HttpStatus status, String message) {
         this.status = status;
         this.message = message;
+    }
+
+    public GenericResponse(HttpStatus status, String message, T data) {
+        this.status = status;
+        this.message = message;
+        this.data = data;
     }
 
 }
