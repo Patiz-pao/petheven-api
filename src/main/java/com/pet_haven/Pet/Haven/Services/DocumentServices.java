@@ -31,15 +31,27 @@ public class DocumentServices {
         productEntity.setCreatedAt(LocalDateTime.now());
         productEntity.setUpdatedAt(LocalDateTime.now());
 
+        productEntity.setSku(generateNewSku());
+
         productRepo.save(productEntity);
 
         return new GenericResponse<>(HttpStatus.CREATED, "Product created successfully", productEntity);
     }
 
     public GenericResponse<List<ProductEntity>> getProducts() {
-        List<ProductEntity> products = productRepo.findAll();
+        List<ProductEntity> products = productRepo.findAllOrderByCreatedAtDesc();
 
         return new GenericResponse<>(HttpStatus.OK, "Get Products successfully", products);
+    }
+
+    private String generateNewSku() {
+        ProductEntity lastProduct = productRepo.findTopByOrderByCreatedAtDesc();
+        String lastSku = (lastProduct != null) ? lastProduct.getSku() : "PD-000";
+
+        int lastSkuNumber = Integer.parseInt(lastSku.substring(3));
+
+        int newSkuNumber = lastSkuNumber + 1;
+        return "PD-" + String.format("%03d", newSkuNumber);
     }
 
 }
