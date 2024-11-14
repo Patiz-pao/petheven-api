@@ -60,6 +60,4 @@ public class ProductEntity {
     @Column(name = "discount_price")
     private BigDecimal discountPrice;
 
-    @Column(name = "is_featured")
-    private Boolean isFeatured;
 }

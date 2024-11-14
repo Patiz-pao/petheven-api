@@ -22,6 +22,16 @@ import java.util.UUID;
 public class DocumentServices {
     private final ProductRepo productRepo;
 
+    private String generateNewSku() {
+        ProductEntity lastProduct = productRepo.findTopByOrderByCreatedAtDesc();
+        String lastSku = (lastProduct != null) ? lastProduct.getSku() : "PD-000";
+
+        int lastSkuNumber = Integer.parseInt(lastSku.substring(3));
+
+        int newSkuNumber = lastSkuNumber + 1;
+        return "PD-" + String.format("%03d", newSkuNumber);
+    }
+
     public GenericResponse<ProductEntity> saveProducts(productsReq productsReq) {
         ProductEntity productEntity = new ProductEntity();
 
@@ -44,14 +54,10 @@ public class DocumentServices {
         return new GenericResponse<>(HttpStatus.OK, "Get Products successfully", products);
     }
 
-    private String generateNewSku() {
-        ProductEntity lastProduct = productRepo.findTopByOrderByCreatedAtDesc();
-        String lastSku = (lastProduct != null) ? lastProduct.getSku() : "PD-000";
+    public GenericResponse<ProductEntity> getProductsById(String rowId) {
+        ProductEntity products = productRepo.findByRowid(rowId);
 
-        int lastSkuNumber = Integer.parseInt(lastSku.substring(3));
-
-        int newSkuNumber = lastSkuNumber + 1;
-        return "PD-" + String.format("%03d", newSkuNumber);
+        return new GenericResponse<>(HttpStatus.OK, "Get ProductsById successfully", products);
     }
 
 }

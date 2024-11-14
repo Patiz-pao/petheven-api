@@ -26,6 +26,5 @@ public class productsReq {
     private String brand;
     private BigDecimal rating;
     private BigDecimal discountPrice;
-    private Boolean isFeatured;
 
 }

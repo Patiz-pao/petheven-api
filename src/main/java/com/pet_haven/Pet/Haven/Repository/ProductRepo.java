@@ -9,6 +9,8 @@ import java.util.List;
 public interface ProductRepo extends JpaRepository<ProductEntity, String> {
     ProductEntity findTopByOrderByCreatedAtDesc();
 
+    ProductEntity findByRowid(String rowId);
+
     @Query("SELECT p FROM ProductEntity p ORDER BY p.createdAt DESC")
     List<ProductEntity> findAllOrderByCreatedAtDesc();
 }

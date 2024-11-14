@@ -7,10 +7,7 @@ import com.pet_haven.Pet.Haven.Services.domain.productsReq;
 import com.pet_haven.Pet.Haven.Util.GenericResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -40,6 +37,15 @@ public class DocumentController {
     public GenericResponse<List<ProductEntity>> getProducts() {
 
         GenericResponse<List<ProductEntity>> response = documentServices.getProducts();
+        log.info("get products success");
+
+        return response;
+    }
+
+    @GetMapping("/products/id")
+    public GenericResponse<ProductEntity> getProductsById(@RequestParam String rowId) {
+
+        GenericResponse<ProductEntity> response = documentServices.getProductsById(rowId);
         log.info("get products success");
 
         return response;
