@@ -11,6 +11,6 @@ public interface ProductRepo extends JpaRepository<ProductEntity, String> {
 
     ProductEntity findByRowid(String rowId);
 
-    @Query("SELECT p FROM ProductEntity p ORDER BY p.createdAt DESC")
-    List<ProductEntity> findAllOrderByCreatedAtDesc();
+    @Query("SELECT p FROM ProductEntity p ORDER BY p.updatedAt DESC")
+    List<ProductEntity> findAllOrderByUpdatedAtDesc();
 }
