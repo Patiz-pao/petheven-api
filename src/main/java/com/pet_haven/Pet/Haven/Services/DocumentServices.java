@@ -49,7 +49,7 @@ public class DocumentServices {
     }
 
     public GenericResponse<List<ProductEntity>> getProducts() {
-        List<ProductEntity> products = productRepo.findAllOrderByCreatedAtDesc();
+        List<ProductEntity> products = productRepo.findAllOrderByUpdatedAtDesc();
 
         return new GenericResponse<>(HttpStatus.OK, "Get Products successfully", products);
     }
@@ -59,5 +59,30 @@ public class DocumentServices {
 
         return new GenericResponse<>(HttpStatus.OK, "Get ProductsById successfully", products);
     }
+
+    public GenericResponse<ProductEntity> updateProduct(String rowId, productsReq productsReq) {
+        ProductEntity products = productRepo.findByRowid(rowId);
+
+        if (products == null) {
+            return new GenericResponse<>(HttpStatus.NOT_FOUND, "Product not found", null);
+        }
+        products.setRowid(rowId);
+        products.setName(productsReq.getName());
+        products.setDescription(productsReq.getDescription());
+        products.setPrice(productsReq.getPrice());
+        products.setCategory(productsReq.getCategory());
+        products.setStockQuantity(productsReq.getStockQuantity());
+        products.setImageUrl(productsReq.getImageUrl());
+        products.setSku(productsReq.getSku());
+        products.setBrand(productsReq.getBrand());
+        products.setRating(productsReq.getRating());
+        products.setDiscountPrice(productsReq.getDiscountPrice());
+        products.setUpdatedAt(LocalDateTime.now());
+
+        productRepo.save(products);
+
+        return new GenericResponse<>(HttpStatus.OK, "Product updated successfully", products);
+    }
+
 
 }

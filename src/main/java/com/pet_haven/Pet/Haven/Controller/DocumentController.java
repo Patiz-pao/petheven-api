@@ -42,13 +42,21 @@ public class DocumentController {
         return response;
     }
 
-    @GetMapping("/products/id")
-    public GenericResponse<ProductEntity> getProductsById(@RequestParam String rowId) {
+    @GetMapping("/products/{rowId}")
+    public GenericResponse<ProductEntity> getProductsById(@PathVariable String rowId) {
 
         GenericResponse<ProductEntity> response = documentServices.getProductsById(rowId);
-        log.info("get products success");
+        log.info("Get Product by rowId: {}", rowId);
 
         return response;
     }
+
+    @PutMapping("/products/{rowId}")
+    public GenericResponse<ProductEntity> updateProduct(@PathVariable String rowId, @RequestBody productsReq productsReq) {
+        GenericResponse<ProductEntity> response = documentServices.updateProduct(rowId, productsReq);
+        log.info("Product with rowId: {} updated successfully", rowId);
+        return response;
+    }
+
 
 }
