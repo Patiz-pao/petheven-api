@@ -60,4 +60,19 @@ public class DocumentServices {
         return new GenericResponse<>(HttpStatus.OK, "Get ProductsById successfully", products);
     }
 
+    public GenericResponse<ProductEntity> updateProduct(String rowId, productsReq productsReq) {
+        ProductEntity products = productRepo.findByRowid(rowId);
+
+        if (products == null) {
+            return new GenericResponse<>(HttpStatus.NOT_FOUND, "Product not found", null);
+        }
+        BeanUtils.copyProperties(productsReq, products);
+        products.setUpdatedAt(LocalDateTime.now());
+
+        productRepo.save(products);
+
+        return new GenericResponse<>(HttpStatus.OK, "Product updated successfully", products);
+    }
+
+
 }
