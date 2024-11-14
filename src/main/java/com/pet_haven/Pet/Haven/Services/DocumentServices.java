@@ -22,7 +22,17 @@ import java.util.UUID;
 public class DocumentServices {
     private final ProductRepo productRepo;
 
-    public GenericResponse saveProducts(productsReq productsReq) {
+    private String generateNewSku() {
+        ProductEntity lastProduct = productRepo.findTopByOrderByCreatedAtDesc();
+        String lastSku = (lastProduct != null) ? lastProduct.getSku() : "PD-000";
+
+        int lastSkuNumber = Integer.parseInt(lastSku.substring(3));
+
+        int newSkuNumber = lastSkuNumber + 1;
+        return "PD-" + String.format("%03d", newSkuNumber);
+    }
+
+    public GenericResponse<ProductEntity> saveProducts(productsReq productsReq) {
         ProductEntity productEntity = new ProductEntity();
 
         productsReq.setRowid(UUID.randomUUID().toString());
@@ -31,17 +41,23 @@ public class DocumentServices {
         productEntity.setCreatedAt(LocalDateTime.now());
         productEntity.setUpdatedAt(LocalDateTime.now());
 
+        productEntity.setSku(generateNewSku());
+
         productRepo.save(productEntity);
 
-        GenericResponse response = new GenericResponse(HttpStatus.CREATED, "Product created successfully", productEntity);
-
-        return response;
+        return new GenericResponse<>(HttpStatus.CREATED, "Product created successfully", productEntity);
     }
 
-    public GenericResponse getProducts() {
-        List<ProductEntity> products = productRepo.findAll();
+    public GenericResponse<List<ProductEntity>> getProducts() {
+        List<ProductEntity> products = productRepo.findAllOrderByCreatedAtDesc();
 
-        return new GenericResponse(HttpStatus.OK, "Get Products successfully", products);
+        return new GenericResponse<>(HttpStatus.OK, "Get Products successfully", products);
+    }
+
+    public GenericResponse<ProductEntity> getProductsById(String rowId) {
+        ProductEntity products = productRepo.findByRowid(rowId);
+
+        return new GenericResponse<>(HttpStatus.OK, "Get ProductsById successfully", products);
     }
 
 }
