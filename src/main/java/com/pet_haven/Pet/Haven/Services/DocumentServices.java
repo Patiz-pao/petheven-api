@@ -1,8 +1,11 @@
 package com.pet_haven.Pet.Haven.Services;
 
+import com.pet_haven.Pet.Haven.Entity.CategoryEntity;
 import com.pet_haven.Pet.Haven.Entity.ProductEntity;
+import com.pet_haven.Pet.Haven.Repository.CategoryRepo;
 import com.pet_haven.Pet.Haven.Repository.ProductRepo;
-import com.pet_haven.Pet.Haven.Services.domain.productsReq;
+import com.pet_haven.Pet.Haven.Services.domain.CategoryReq;
+import com.pet_haven.Pet.Haven.Services.domain.ProductsReq;
 import com.pet_haven.Pet.Haven.Util.GenericResponse;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +24,7 @@ import java.util.UUID;
 @Transactional
 public class DocumentServices {
     private final ProductRepo productRepo;
+    private final CategoryRepo categoryRepo;
 
     private String generateNewSku() {
         ProductEntity lastProduct = productRepo.findTopByOrderByCreatedAtDesc();
@@ -32,7 +36,7 @@ public class DocumentServices {
         return "PD-" + String.format("%03d", newSkuNumber);
     }
 
-    public GenericResponse<ProductEntity> saveProducts(productsReq productsReq) {
+    public GenericResponse<ProductEntity> saveProducts(ProductsReq productsReq) {
         ProductEntity productEntity = new ProductEntity();
 
         productsReq.setRowid(UUID.randomUUID().toString());
@@ -60,7 +64,7 @@ public class DocumentServices {
         return new GenericResponse<>(HttpStatus.OK, "Get ProductsById successfully", products);
     }
 
-    public GenericResponse<ProductEntity> updateProduct(String rowId, productsReq productsReq) {
+    public GenericResponse<ProductEntity> updateProduct(String rowId, ProductsReq productsReq) {
         ProductEntity products = productRepo.findByRowid(rowId);
 
         if (products == null) {
@@ -82,6 +86,23 @@ public class DocumentServices {
         productRepo.save(products);
 
         return new GenericResponse<>(HttpStatus.OK, "Product updated successfully", products);
+    }
+
+    public GenericResponse<CategoryEntity> saveCategory(CategoryReq categoryReq) {
+        CategoryEntity categoryEntity = new CategoryEntity();
+
+        categoryReq.setRowid(UUID.randomUUID().toString());
+        BeanUtils.copyProperties(categoryReq, categoryEntity);
+
+        categoryRepo.save(categoryEntity);
+
+        return new GenericResponse<>(HttpStatus.CREATED, "Category created successfully", categoryEntity);
+    }
+
+    public GenericResponse<List<CategoryEntity>> getCategory() {
+        List<CategoryEntity> category = categoryRepo.findAll();
+
+        return new GenericResponse<>(HttpStatus.OK, "Get Category successfully", category);
     }
 
 
