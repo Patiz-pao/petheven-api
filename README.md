@@ -1,10 +1,10 @@
 # Pet Haven API
 
-Pet Haven API เป็นโปรเจค **Java Spring Boot** สำหรับให้บริการ API ที่เชื่อมต่อกับ [Pet Haven Frontend Repository](https://github.com/username/pet-haven-frontend)  
+Pet Haven API เป็นโปรเจค **Java Spring Boot** สำหรับให้บริการ API ที่เชื่อมต่อกับ [Pet Haven Frontend Repository](https://github.com/username/pet-haven-frontend](https://github.com/Patiz-pao/pethaven-frontend))  
 โดยเป็นโปรเจค backend ที่สนับสนุนการทำงานของเว็บไซต์ [Pet Haven Shop](https://pet-haven-shop.netlify.app) ทั้งหมด  
 เช่น การจัดการสินค้า, การทำคำสั่งซื้อ, และการจัดการผู้ใช้งาน  
 
-Pet Haven API is a **Java Spring Boot** project that provides an API connecting with the [Pet Haven Frontend Repository](https://github.com/username/pet-haven-frontend).  
+Pet Haven API is a **Java Spring Boot** project that provides an API connecting with the [Pet Haven Frontend Repository](https://github.com/username/pet-haven-frontend](https://github.com/Patiz-pao/pethaven-frontend)).  
 This backend project supports the entire functionality of the [Pet Haven Shop](https://pet-haven-shop.netlify.app) website,  
 including product management, order management, and user management.
 
