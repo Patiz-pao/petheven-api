@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @AllArgsConstructor
-public class productsReq {
+public class ProductsReq {
 
     private String rowid;
     private String name;
