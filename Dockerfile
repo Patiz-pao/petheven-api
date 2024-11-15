@@ -9,7 +9,6 @@ COPY pom.xml .
 RUN chmod +x mvnw
 
 COPY src src
-COPY .env .
 
 RUN ./mvnw clean package -DskipTests
 
