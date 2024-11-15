@@ -35,6 +35,14 @@ public class DocumentController {
         return response;
     }
 
+    @DeleteMapping("/products/{rowid}")
+    public GenericResponse<String> deleteProduct(@PathVariable String rowid) {
+        GenericResponse<String> response = documentServices.deleteProduct(rowid);
+        log.info("delete product success");
+
+        return response;
+    }
+
     @GetMapping("/products")
     public GenericResponse<List<ProductEntity>> getProducts() {
 

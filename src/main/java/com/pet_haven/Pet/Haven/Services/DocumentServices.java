@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Slf4j
@@ -52,8 +53,18 @@ public class DocumentServices {
         return new GenericResponse<>(HttpStatus.CREATED, "Product created successfully", productEntity);
     }
 
+    public GenericResponse<String> deleteProduct(String rowid) {
+        Optional<ProductEntity> productEntityOpt = productRepo.findById(rowid);
+        if (productEntityOpt.isPresent()) {
+            productRepo.delete(productEntityOpt.get());
+            return new GenericResponse<>(HttpStatus.OK, "Product deleted successfully", "Product with ID: " + rowid + " deleted.");
+        } else {
+            return new GenericResponse<>(HttpStatus.NOT_FOUND, "Product not found", "No product found with ID: " + rowid);
+        }
+    }
+
     public GenericResponse<List<ProductEntity>> getProducts() {
-        List<ProductEntity> products = productRepo.findAllOrderByUpdatedAtDesc();
+        List<ProductEntity> products = productRepo.getAllProduct();
 
         return new GenericResponse<>(HttpStatus.OK, "Get Products successfully", products);
     }
