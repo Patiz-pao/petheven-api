@@ -1,21 +1,16 @@
-FROM maven:3.8.6-openjdk-17-slim AS build
-
-WORKDIR /app
-
-COPY pom.xml .
-RUN mvn dependency:go-offline
-
-COPY src /app/src
-
-RUN mvn clean package -DskipTests
-
 FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 
-COPY --from=build /app/target/*.jar app.jar
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
 
-# เปิดพอร์ตที่ต้องการ
+RUN chmod +x mvnw
+
+COPY src src
+
+RUN ./mvnw clean package -DskipTests
+
 EXPOSE 8080
-
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "target/*.jar"]
