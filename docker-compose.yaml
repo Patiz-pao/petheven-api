@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  app:
+    build: src/main/java
+    ports:
+      - "8080:8080"
+    env_file:
+      - src/main/resources/.env
+    environment:
+      - DB_URL=${DB_URL}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
