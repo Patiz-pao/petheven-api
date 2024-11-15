@@ -1,4 +1,3 @@
-"""
 # Pet Haven API
 
 Pet Haven API เป็นโปรเจค **Java Spring Boot** สำหรับให้บริการ API ที่เชื่อมต่อกับ [Pet Haven Frontend Repository](https://github.com/username/pet-haven-frontend)  
@@ -38,5 +37,3 @@ You can use tools like Postman or cURL to test the API
 ## 🙏 ขอบคุณ (Thank You)
 ขอบคุณที่ใช้โปรเจค Pet Haven API!
 Thank you for using Pet Haven API!
-
-"""
