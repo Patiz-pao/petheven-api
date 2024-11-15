@@ -52,6 +52,15 @@ public class DocumentController {
         return response;
     }
 
+    @GetMapping("/products/all")
+    public GenericResponse<List<ProductEntity>> getAllProducts() {
+
+        GenericResponse<List<ProductEntity>> response = documentServices.getAllProducts();
+        log.info("get all products success");
+
+        return response;
+    }
+
     @GetMapping("/products/{rowId}")
     public GenericResponse<ProductEntity> getProductsById(@PathVariable String rowId) {
 
@@ -64,6 +73,13 @@ public class DocumentController {
     @PutMapping("/products/{rowId}")
     public GenericResponse<ProductEntity> updateProduct(@PathVariable String rowId, @RequestBody ProductsReq productsReq) {
         GenericResponse<ProductEntity> response = documentServices.updateProduct(rowId, productsReq);
+        log.info("Product with rowId: {} updated successfully", rowId);
+        return response;
+    }
+
+    @PutMapping("/status/{rowId}/{status}")
+    public GenericResponse<ProductEntity> updateStatus(@PathVariable String rowId,@PathVariable String status, @RequestBody ProductsReq productsReq) {
+        GenericResponse<ProductEntity> response = documentServices.updateStatus(rowId, status, productsReq);
         log.info("Product with rowId: {} updated successfully", rowId);
         return response;
     }

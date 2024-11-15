@@ -13,4 +13,7 @@ public interface ProductRepo extends JpaRepository<ProductEntity, String> {
 
     @Query(value = "SELECT * FROM products WHERE status = 'Y' ORDER BY updated_at DESC", nativeQuery = true)
     List<ProductEntity> getAllProduct();
+
+    @Query(value = "SELECT * FROM products ORDER BY updated_at DESC", nativeQuery = true)
+    List<ProductEntity> getAllProductAdmin();
 }

@@ -69,6 +69,12 @@ public class DocumentServices {
         return new GenericResponse<>(HttpStatus.OK, "Get Products successfully", products);
     }
 
+    public GenericResponse<List<ProductEntity>> getAllProducts() {
+        List<ProductEntity> products = productRepo.getAllProductAdmin();
+
+        return new GenericResponse<>(HttpStatus.OK, "Get All Products successfully", products);
+    }
+
     public GenericResponse<ProductEntity> getProductsById(String rowId) {
         ProductEntity products = productRepo.findByRowid(rowId);
 
@@ -93,6 +99,20 @@ public class DocumentServices {
         products.setRating(productsReq.getRating());
         products.setDiscountPrice(productsReq.getDiscountPrice());
         products.setUpdatedAt(LocalDateTime.now());
+
+        productRepo.save(products);
+
+        return new GenericResponse<>(HttpStatus.OK, "Product updated successfully", products);
+    }
+
+    public GenericResponse<ProductEntity> updateStatus(String rowId,String status, ProductsReq productsReq) {
+        ProductEntity products = productRepo.findByRowid(rowId);
+
+        if (products == null) {
+            return new GenericResponse<>(HttpStatus.NOT_FOUND, "Product not found", null);
+        }
+        products.setRowid(rowId);
+        products.setStatus(status);
 
         productRepo.save(products);
 
