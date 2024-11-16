@@ -7,7 +7,7 @@ import com.pet_haven.Pet.Haven.Repository.ProductRepo;
 import com.pet_haven.Pet.Haven.Services.domain.CategoryReq;
 import com.pet_haven.Pet.Haven.Services.domain.ProductsReq;
 import com.pet_haven.Pet.Haven.Util.GenericResponse;
-import lombok.*;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;

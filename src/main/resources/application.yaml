@@ -6,6 +6,8 @@ spring:
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 10
+    data-source-properties:
+      currentSchema: public
   jpa:
     hibernate:
       ddl-auto: update

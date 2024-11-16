@@ -2,7 +2,6 @@ package com.pet_haven.Pet.Haven.Controller;
 
 import com.pet_haven.Pet.Haven.Entity.CategoryEntity;
 import com.pet_haven.Pet.Haven.Entity.ProductEntity;
-import com.pet_haven.Pet.Haven.Repository.ProductRepo;
 import com.pet_haven.Pet.Haven.Services.DocumentServices;
 import com.pet_haven.Pet.Haven.Services.domain.CategoryReq;
 import com.pet_haven.Pet.Haven.Services.domain.ProductsReq;
@@ -19,7 +18,6 @@ import java.util.List;
 public class DocumentController {
 
     private DocumentServices documentServices;
-    private ProductRepo productRepo;
 
     @GetMapping("/hello")
     public String hello() {
