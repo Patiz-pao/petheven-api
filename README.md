@@ -1,5 +1,11 @@
 # Pet Haven API
 
+⚠️ คำเตือน / Warning
+Free Hosting Auto-Sleep
+- เนื่องจาก API ถูก deploy ด้วยบริการโฮสติ้งฟรี อาจมีการเข้าสู่โหมดพัก (auto-sleep) หลังจากไม่มีการใช้งานเป็นเวลานาน เมื่อมีการเรียกใช้ API ครั้งแรกหลังจากโหมดพัก อาจต้องรอประมาณ 5-10 นาที เพื่อให้ API กลับมาทำงานอีกครั้ง
+Free Hosting Auto-Sleep
+- The API is deployed using a free hosting service, which may enter an auto-sleep mode after being idle for a while. The first API call after the sleep mode may require a wait time of 5-10 minutes for the API to resume operation.
+
 Pet Haven API เป็นโปรเจค **Java Spring Boot** สำหรับให้บริการ API ที่เชื่อมต่อกับ [Pet Haven Frontend Repository](https://github.com/Patiz-pao/pethaven-frontend)  
 โดยเป็นโปรเจค backend ที่สนับสนุนการทำงานของเว็บไซต์ [Pet Haven Shop](https://pet-haven-shop.netlify.app) ทั้งหมด  
 เช่น การจัดการสินค้า, การทำคำสั่งซื้อ, และการจัดการผู้ใช้งาน  
